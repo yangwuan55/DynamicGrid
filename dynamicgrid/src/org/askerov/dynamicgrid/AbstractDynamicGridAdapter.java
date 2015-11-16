@@ -1,6 +1,9 @@
 package org.askerov.dynamicgrid;
 
+import android.content.Context;
 import android.widget.BaseAdapter;
+
+import com.ymr.common.ui.adapter.DataBaseAdapter;
 
 import java.util.HashMap;
 import java.util.List;
@@ -16,12 +19,16 @@ import java.util.List;
  * Abstract adapter for {@link org.askerov.dynamicgrid.DynamicGridView} with sable items id;
  */
 
-public abstract class AbstractDynamicGridAdapter extends BaseAdapter implements DynamicGridAdapterInterface {
+public abstract class AbstractDynamicGridAdapter<D> extends DataBaseAdapter<D> implements DynamicGridAdapterInterface {
     public static final int INVALID_ID = -1;
 
     private int nextStableId = 0;
 
     private HashMap<Object, Integer> mIdMap = new HashMap<Object, Integer>();
+
+    public AbstractDynamicGridAdapter(Context context) {
+        super(context);
+    }
 
     /**
      * Adapter must have stable id
